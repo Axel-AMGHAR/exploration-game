@@ -1,5 +1,7 @@
 <template>
   <div>
+  <SelectMethod/>
+  <Input :name="Token"/>
   <component :is="currentStage"></component>
 <!--  {{ currentView}}-->
   <component :is="currentView"></component>
@@ -9,6 +11,9 @@
 <script>
 import FirstStage from "./components/FirstStage.vue";
 import MyInscription from "./components/MyInscription.vue";
+import Input from "./components/base/Input.vue";
+import SelectMethod from "./components/SelectMethod.vue";
+ 
 
 export default {
   name: "app",
