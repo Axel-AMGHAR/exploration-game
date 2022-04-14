@@ -2,7 +2,7 @@
   <div>
   <SelectMethod/>
   <Input :name="Token"/>
-  <component :is="currentStage"></component>
+  <component :is="currentStage" @goUp="goUp()"></component>
 <!--  {{ currentView}}-->
   <component :is="currentView"></component>
   </div>
@@ -26,6 +26,10 @@ export default {
       currentStage: 'FirstStage',
       currentView: 'MyInscription',
     }
+  },
+
+  methods () {
+
   }
 }
 </script>

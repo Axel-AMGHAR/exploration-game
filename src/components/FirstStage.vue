@@ -39,6 +39,9 @@ export default {
         case 'inscription':
           this.inscription()
           break
+        case 'escalier':
+          this.$emit('goUp')
+          break
 
       }
     },
