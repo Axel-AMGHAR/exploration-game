@@ -42,10 +42,12 @@ export default {
         case 'escalier':
           this.$emit('goUp')
           break
+        case 'coffre':
+          this.coffre()
+          break
         case '1':
           this.first()
           break
-
       }
     },
     inscription () {
@@ -55,7 +57,10 @@ export default {
       this.$parent.currentView = 'FindTreasure'
     },
     goUp() {
-      
+
+    },
+    coffre() {
+      this.$parent.currentView = 'Coffre'
     }
   },
 /*  props: {
