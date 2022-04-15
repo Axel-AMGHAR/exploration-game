@@ -4,15 +4,20 @@
       <select-method></select-method>
       <my-input placeholder="Route"></my-input>
     </div>
-    <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
+    <!-- <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
             style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
             title="reverent-sky-yelq4m"
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-    ></iframe>
+    ></iframe> -->
+
+  
+
     <my-input
         placeholder="Token de connexion"
     ></my-input>
+
+    <json-text :jsonText="info"></json-text>
 
 <!--    <component
         :is="currentStage"
@@ -32,7 +37,9 @@ import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
 import FindTreasure from "./components/base/FindTreasure.vue";
 import Coffre from './components/Coffre.vue';
- 
+import JsonText from "./components/base/JsonText.vue";
+import axios from 'axios'
+
 
 export default {
   name: "app",
@@ -44,7 +51,8 @@ export default {
     MyInput,
     SelectMethod,
     FindTreasure,
-    Coffre
+    Coffre,
+    JsonText
   },
   data () {
     return {
@@ -52,7 +60,17 @@ export default {
       stages: ['', '8000', '7259'],
       currentStageIndex: 0,
       //currentView: 'MyInscription',
-      isDecryptViewVisible: false
+      isDecryptViewVisible: false,
+      info: {
+        "presentation": "Merci de venir explorer mon API (donjon) presque totalement RESTful.\n\nLe jeu est simple, vous naviguez dans le donjon pour trouver les 7 trésors qui y sont cachés.\n\nBonne exploration",
+        "carte": [
+          "/inscription",
+          "/reset",
+          "/escalier",
+          "/coffre",
+          "/1"
+        ] 
+      }
     }
   },
 
@@ -69,7 +87,8 @@ export default {
 /*    changeCurrentView (view) {
       this.currentView = view
     }*/
-  }
+  },
+  
 }
 </script>
 
