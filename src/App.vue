@@ -9,7 +9,7 @@
 
       <button
           @click="request()"
-          class="border-green-700 rounded p-2 px-4 bg-green-600 text-white font-bold uppercase"
+          class="bg-slate-800 border-4 rounded p-2 px-4 border-blue-800 text-white font-bold uppercase"
       >Send</button>
     </div>
     <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
@@ -27,11 +27,11 @@
       <json-text
           class="basis-3/4 mx-2"
           :jsonText="response"
-      ></json-text>
+      >Response</json-text>
       <json-text
           class="basis-1/4 mx-2"
           :jsonText="headers"
-      ></json-text>
+      >Headers</json-text>
     </div>
   </div>
 </template>
@@ -62,10 +62,9 @@ export default {
   },
   data () {
     return {
-      //stages: ['FirstStage', 'SecondStage', 'ThirdStage'],
+      numberTreasures: 0,
       ports: ['', '8000', '7259'],
       currentPortIndex: 0,
-      //currentView: 'MyInscription',
       isDecryptViewVisible: false,
       url: '',
       method: 'get',
@@ -93,9 +92,12 @@ export default {
         }
       }).then(response => {
         this.response = response.data
-        console.log(this.response)
-        console.log(response.headers)
         this.headers = response.headers
+        axios.get('/api/reset', {
+          headers: {
+            'x-auth-token': this.token,
+          }
+        }).then(response => this.numberTreasures = response.data.retreived_tresors.length)
       })
     },
     goUp () {
