@@ -23,8 +23,17 @@
         v-model="token"
     ></my-input>
 
-    <json-text :jsonText="info"></json-text>
-
+    <div class="flex">
+      <json-text
+          class="basis-3/4 mx-2"
+          :jsonText="info"
+      ></json-text>
+      <the-headers
+          class="basis-1/4 mx-2"
+          :headers="headers"
+      >
+      </the-headers>
+    </div>
 <!--    <component
         :is="currentStage"
         @go-up="goUp()"
@@ -45,6 +54,7 @@ import SelectMethod from "./components/SelectMethod.vue";
 //import Coffre from './components/Coffre.vue';
 import axios from 'axios'
 import JsonText from "./components/base/JsonText.vue";
+import TheHeaders from "./components/TheHeaders.vue";
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*'
 
@@ -59,7 +69,8 @@ export default {
     SelectMethod,
     //FindTreasure,
     //Coffre
-    JsonText
+    JsonText,
+    TheHeaders
   },
   data () {
     return {
@@ -73,6 +84,7 @@ export default {
       data: {},
       response: {},
       token: '',
+      headers: {},
       info: {
         "presentation": "Merci de venir explorer mon API (donjon) presque totalement RESTful.\n\nLe jeu est simple, vous naviguez dans le donjon pour trouver les 7 trésors qui y sont cachés.\n\nBonne exploration",
         "carte": [
@@ -101,6 +113,7 @@ export default {
       }).then(response => {
         this.response = response.data
         console.log(this.response)
+        console.log(response.headers)
       })
     },
     goUp () {
