@@ -1,9 +1,8 @@
 <template>
-    <div class="flex flex-row">
-        <div class="basis-full bg-slate-800 text-white text-left">
+  <div></div>
+        <div class="border-4 rounded-md border-blue-800 shadow-sm bg-slate-800 text-white text-left">
             <pre class="p-5">{{ finalJson }}</pre>
         </div>
-    </div>
 </template>
 
 <script>
@@ -11,11 +10,6 @@ export default {
   name: 'JsonText',
   props: {
       jsonText: Object
-  },
-  data() {
-      return {
-          finalJson: '',
-      }
   },
   computed: {
       finalJson() {

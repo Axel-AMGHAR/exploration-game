@@ -26,32 +26,20 @@
     <div class="flex">
       <json-text
           class="basis-3/4 mx-2"
-          :jsonText="info"
+          :jsonText="response"
       ></json-text>
-      <the-headers
+      <json-text
           class="basis-1/4 mx-2"
-          :headers="headers"
-      >
-      </the-headers>
+          :jsonText="headers"
+      ></json-text>
     </div>
-<!--    <component
-        :is="currentStage"
-        @go-up="goUp()"
-        @change-current-view="view => changeCurrentView(view)"
-    ></component>
-    <component :is="currentView"></component>-->
   </div>
 </template>
 
 <script>
-// import FirstStage from "./components/FirstStage.vue";
-// import SecondStage from "./components/SecondStage.vue";
-// import ThirdStage from "./components/ThirdStage.vue";
 import MyInscription from "./components/MyInscription.vue";
 import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
-//import FindTreasure from "./components/base/FindTreasure.vue";
-//import Coffre from './components/Coffre.vue';
 import axios from 'axios'
 import JsonText from "./components/base/JsonText.vue";
 import TheHeaders from "./components/TheHeaders.vue";
@@ -84,17 +72,7 @@ export default {
       data: {},
       response: {},
       token: '',
-      headers: {},
-      info: {
-        "presentation": "Merci de venir explorer mon API (donjon) presque totalement RESTful.\n\nLe jeu est simple, vous naviguez dans le donjon pour trouver les 7 trésors qui y sont cachés.\n\nBonne exploration",
-        "carte": [
-          "/inscription",
-          "/reset",
-          "/escalier",
-          "/coffre",
-          "/1"
-        ]
-      }
+      headers: {}
     }
   },
 
@@ -109,11 +87,15 @@ export default {
       axios({
         method: this.method,
         url: '/api/' + this.url,
-        data: this.data
+        data: this.data,
+        headers: {
+          'x-auth-token': this.token,
+        }
       }).then(response => {
         this.response = response.data
         console.log(this.response)
         console.log(response.headers)
+        this.headers = response.headers
       })
     },
     goUp () {
