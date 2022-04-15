@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-8">
     <div class="flex">
       <select-method v-model="method"></select-method>
       <my-input
@@ -11,23 +11,23 @@
           @click="request()"
           class="bg-slate-800 border-4 rounded p-2 px-4 border-blue-800 text-white font-bold uppercase"
       >Send</button>
-
-      <div>
-        <my-reset  :count="2"></my-reset>
-      </div>
-      
-
+      <my-reset
+          v-if="token !== ''"
+          :count="numberTreasures"
+      ></my-reset>
     </div>
-    <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
-            style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-            title="reverent-sky-yelq4m"
-            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-    ></iframe>
+
+    <div>
+    <label
+        for="token"
+        class="ml-2"
+    >Token :</label>
     <my-input
         placeholder="Token de connexion"
         v-model="token"
+        id="token"
     ></my-input>
+    </div>
 
     <div class="flex">
       <json-text
@@ -39,6 +39,14 @@
           :jsonText="headers"
       >Headers</json-text>
     </div>
+
+    <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
+            style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+            title="reverent-sky-yelq4m"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
+
   </div>
 </template>
 
@@ -77,8 +85,7 @@ export default {
       data: {},
       response: {},
       token: '',
-      headers: {},
-      count: 0
+      headers: {}
     }
   },
 
@@ -122,8 +129,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
