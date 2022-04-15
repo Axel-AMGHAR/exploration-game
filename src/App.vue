@@ -11,6 +11,12 @@
           @click="request()"
           class="bg-slate-800 border-4 rounded p-2 px-4 border-blue-800 text-white font-bold uppercase"
       >Send</button>
+
+      <div>
+        <my-reset  :count="2"></my-reset>
+      </div>
+      
+
     </div>
     <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
             style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -40,9 +46,9 @@
 import MyInscription from "./components/MyInscription.vue";
 import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
-import axios from 'axios'
 import JsonText from "./components/base/JsonText.vue";
-import TheHeaders from "./components/TheHeaders.vue";
+import MyReset from "./components/MyReset.vue";
+import axios from 'axios'
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*'
 
@@ -58,7 +64,7 @@ export default {
     //FindTreasure,
     //Coffre
     JsonText,
-    TheHeaders
+    MyReset
   },
   data () {
     return {
@@ -71,7 +77,8 @@ export default {
       data: {},
       response: {},
       token: '',
-      headers: {}
+      headers: {},
+      count: 0
     }
   },
 
