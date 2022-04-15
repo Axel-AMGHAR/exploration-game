@@ -12,7 +12,6 @@
           class="border-green-700 rounded p-2 px-4 bg-green-600 text-white font-bold uppercase"
       >Send</button>
     </div>
-
     <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
             style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
             title="reverent-sky-yelq4m"
@@ -43,6 +42,7 @@ import SelectMethod from "./components/SelectMethod.vue";
 //import FindTreasure from "./components/base/FindTreasure.vue";
 //import Coffre from './components/Coffre.vue';
 import axios from 'axios'
+import JsonText from "./components/base/JsonText.vue";
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*'
 
@@ -57,6 +57,7 @@ export default {
     SelectMethod,
     //FindTreasure,
     //Coffre
+    JsonText
   },
   data () {
     return {
@@ -69,7 +70,17 @@ export default {
       method: 'get',
       data: {},
       response: {},
-      token: ''
+      token: '',
+      info: {
+        "presentation": "Merci de venir explorer mon API (donjon) presque totalement RESTful.\n\nLe jeu est simple, vous naviguez dans le donjon pour trouver les 7 trésors qui y sont cachés.\n\nBonne exploration",
+        "carte": [
+          "/inscription",
+          "/reset",
+          "/escalier",
+          "/coffre",
+          "/1"
+        ]
+      }
     }
   },
 
