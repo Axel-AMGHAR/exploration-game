@@ -1,13 +1,11 @@
 <template>
     <div class="flex flex-row w-screen-lg overflow-x-hidden">
         <div class="basis-full bg-slate-800 text-white text-left">
-            <div class="p-5">
-                <pre class="flex flex-col">
-                    <span  v-for="(final, index) in finalJson" :key="index">
-                        {{ final }} 
-                    </span>
-                </pre>
-            </div>
+            <pre class="flex flex-col">
+                <div v-for="(final, index) in finalJson" :key="index">
+                    {{ final }} 
+                </div>
+            </pre>
         </div>
     </div>
 </template>
@@ -17,7 +15,7 @@ export default {
   name: 'JsonText',
   props: {
       jsonText: Object
-  },  
+  },
   data() {
       return {
           finalJson: '',
@@ -27,7 +25,7 @@ export default {
       finalJson() {
           console.log("dedans");
           
-          return (JSON.stringify(this.jsonText, null, 2)).split('\\n\\n');
+          return (JSON.stringify(this.jsonText, null, '\t')).split('\n\n');
       }
   }
 }

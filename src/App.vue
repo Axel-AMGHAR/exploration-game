@@ -23,6 +23,8 @@
         v-model="token"
     ></my-input>
 
+    <json-text :jsonText="info"></json-text>
+
 <!--    <component
         :is="currentStage"
         @go-up="goUp()"
