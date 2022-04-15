@@ -1,5 +1,6 @@
 <template>
   <div>
+    <span>inscription</span>
   </div>
 </template>
 

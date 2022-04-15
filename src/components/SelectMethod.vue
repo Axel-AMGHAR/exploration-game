@@ -1,15 +1,22 @@
 <script>
-
+export default {
+    name: "SelectMethod",
+    data() {
+        return {
+            selected: ''
+        }
+    }
+}
 </script>
 
 <template>
-    <select class="block
-                mt-1
+    <select v-model="selected" class="selectMethod block
+                mt-1 
                 rounded-md
                 border-gray-300
                 shadow-sm
                 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-        <option value="all"> Methodes </option>
+        <option value=""> Methodes </option>
         <option value="get"> GET </option>
         <option value="put"> PUT </option>
         <option value="post"> POST </option>
@@ -20,5 +27,7 @@
 </template>
 
 <style scoped>
-
+.selectMethod {
+    margin: 10px;
+}
 </style>

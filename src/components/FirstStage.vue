@@ -42,12 +42,20 @@ export default {
         case 'escalier':
           this.$emit('goUp')
           break
+        case '1':
+          this.first()
+          break
 
       }
     },
-
     inscription () {
-      this.$parent.currentView = 'Inscription'
+      this.$parent.currentView = 'MyInscription'
+    },
+    first() {
+      this.$parent.currentView = 'FindTreasure'
+    },
+    goUp() {
+      
     }
   },
 /*  props: {
