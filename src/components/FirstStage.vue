@@ -42,6 +42,9 @@ export default {
         case 'escalier':
           this.$emit('goUp')
           break
+        case 'coffre':
+          this.coffre()
+          break
         case '1':
           this.first()
           break
@@ -56,7 +59,19 @@ export default {
     },
     goUp() {
 
+    },
+    coffre() {
+      this.$parent.currentView = 'Coffre'
     }
+  },
+/*  props: {
+    actions: {
+      type: Object,
+      required: true
+    }
+  },*/
+  created() {
+
   }
 }
 </script>

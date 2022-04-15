@@ -31,6 +31,7 @@ import MyInscription from "./components/MyInscription.vue";
 import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
 import FindTreasure from "./components/base/FindTreasure.vue";
+import Coffre from './components/Coffre.vue';
  
 
 export default {
@@ -42,7 +43,8 @@ export default {
     MyInscription,
     MyInput,
     SelectMethod,
-    FindTreasure
+    FindTreasure,
+    Coffre
   },
   data () {
     return {
