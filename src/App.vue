@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="flex">
-      <component :is="currentMethod"></component>
-      <component :is="customPathInput" nameInput="Route customisée"></component>
+      <select-method></select-method>
+      <my-input placeholder="Route customisée"></my-input>
     </div>
    
-    <component :is="tokenInput" nameInput="Token de connexion"></component>
+    <my-input placeholder="Token de connexion"></my-input>
    
 
     <component :is="currentStage" @goUp="goUp()"></component>
@@ -17,7 +17,7 @@
 <script>
 import FirstStage from "./components/FirstStage.vue";
 import MyInscription from "./components/MyInscription.vue";
-import Input from "./components/base/Input.vue";
+import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
 import FindTreasure from "./components/base/FindTreasure.vue";
  
@@ -27,17 +27,14 @@ export default {
   components: {
     FirstStage,
     MyInscription,
-    Input,
+    MyInput,
     SelectMethod,
     FindTreasure
   },
   data () {
     return {
       currentStage: 'FirstStage',
-      currentView: 'MyInscription',
-      currentMethod: 'SelectMethod',
-      tokenInput: 'Input',
-      customPathInput: 'Input'
+      currentView: 'MyInscription'
     }
   },
 

@@ -1,15 +1,9 @@
 <script>
 export default {
-  name: "Input",
+  name: "MyInput",
   data () {
     return {
       textinput: ''
-    }
-  },
-  props: {
-    nameInput: {
-      type: String,
-      default: undefined
     }
   }
 }
@@ -23,7 +17,7 @@ export default {
       rounded-md 
       border-gray-300 
       shadow-sm 
-      focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" :placeholder="nameInput">
+      focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 
 </template>
 
