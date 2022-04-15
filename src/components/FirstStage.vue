@@ -55,17 +55,8 @@ export default {
       this.$parent.currentView = 'FindTreasure'
     },
     goUp() {
-      
-    }
-  },
-/*  props: {
-    actions: {
-      type: Object,
-      required: true
-    }
-  },*/
-  created() {
 
+    }
   }
 }
 </script>

@@ -2,23 +2,31 @@
   <div>
     <div class="flex">
       <select-method></select-method>
-      <my-input placeholder="Route customisée"></my-input>
+      <my-input placeholder="Route"></my-input>
     </div>
-   
+    <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
+            style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+            title="reverent-sky-yelq4m"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
     <my-input
         placeholder="Token de connexion"
-        v-model="testA"
     ></my-input>
-   
 
-    <component :is="currentStage" @goUp="goUp()"></component>
-    <!--  {{ currentView}}-->
-    <component :is="currentView"></component>
+<!--    <component
+        :is="currentStage"
+        @go-up="goUp()"
+        @change-current-view="view => changeCurrentView(view)"
+    ></component>
+    <component :is="currentView"></component>-->
   </div>
 </template>
 
 <script>
-import FirstStage from "./components/FirstStage.vue";
+// import FirstStage from "./components/FirstStage.vue";
+// import SecondStage from "./components/SecondStage.vue";
+// import ThirdStage from "./components/ThirdStage.vue";
 import MyInscription from "./components/MyInscription.vue";
 import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
@@ -28,7 +36,9 @@ import FindTreasure from "./components/base/FindTreasure.vue";
 export default {
   name: "app",
   components: {
-    FirstStage,
+    // FirstStage,
+    // SecondStage,
+    // ThirdStage,
     MyInscription,
     MyInput,
     SelectMethod,
@@ -36,18 +46,27 @@ export default {
   },
   data () {
     return {
-      currentStage: 'FirstStage',
-      currentView: 'MyInscription',
-      testA: ''
+      //stages: ['FirstStage', 'SecondStage', 'ThirdStage'],
+      stages: ['', '8000', '7259'],
+      currentStageIndex: 0,
+      //currentView: 'MyInscription',
+      isDecryptViewVisible: false
     }
   },
-  updated () {
-    console.log('this.test')
-    console.log(this.testA)
+
+  computed: {
+    currentStage () {
+      return this.stages[this.currentStageIndex]
+    }
   },
 
-  methods () {
-
+  methods: {
+    goUp () {
+      this.currentStageIndex++
+    },
+/*    changeCurrentView (view) {
+      this.currentView = view
+    }*/
   }
 }
 </script>
