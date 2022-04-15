@@ -5,7 +5,10 @@
       <my-input placeholder="Route customisée"></my-input>
     </div>
    
-    <my-input placeholder="Token de connexion"></my-input>
+    <my-input
+        placeholder="Token de connexion"
+        v-model="testA"
+    ></my-input>
    
 
     <component :is="currentStage" @goUp="goUp()"></component>
@@ -34,8 +37,13 @@ export default {
   data () {
     return {
       currentStage: 'FirstStage',
-      currentView: 'MyInscription'
+      currentView: 'MyInscription',
+      testA: ''
     }
+  },
+  updated () {
+    console.log('this.test')
+    console.log(this.testA)
   },
 
   methods () {
