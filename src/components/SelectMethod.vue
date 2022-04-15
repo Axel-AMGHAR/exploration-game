@@ -1,16 +1,23 @@
 <script>
 export default {
     name: "SelectMethod",
+  props: {
+    modelValue: String
+  },
+
     data() {
         return {
-            selected: ''
+
         }
     }
 }
 </script>
 
 <template>
-    <select v-model="selected" class="selectMethod block
+    <select
+        @change="$emit('update:modelValue', $event.target.value)"
+        :value="modelValue"
+        class="selectMethod block
                 mt-1 
                 rounded-md
                 border-gray-300

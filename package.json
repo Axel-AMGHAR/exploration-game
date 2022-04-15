@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "cors": "^2.8.5",
     "vue": "^3.2.25"
   },
   "devDependencies": {

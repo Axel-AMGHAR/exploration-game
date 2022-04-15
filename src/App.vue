@@ -1,9 +1,18 @@
 <template>
   <div>
     <div class="flex">
-      <select-method></select-method>
-      <my-input placeholder="Route"></my-input>
+      <select-method v-model="method"></select-method>
+      <my-input
+        placeholder="Route"
+        v-model="url"
+    ></my-input>
+
+      <button
+          @click="request()"
+          class="border-green-700 rounded p-2 px-4 bg-green-600 text-white font-bold uppercase"
+      >Send</button>
     </div>
+
     <iframe v-if="isDecryptViewVisible" src="https://codesandbox.io/embed/reverent-sky-yelq4m?fontsize=14&hidenavigation=1&theme=dark"
             style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
             title="reverent-sky-yelq4m"
@@ -12,6 +21,7 @@
     ></iframe>
     <my-input
         placeholder="Token de connexion"
+        v-model="token"
     ></my-input>
 
 <!--    <component
@@ -30,9 +40,11 @@
 import MyInscription from "./components/MyInscription.vue";
 import MyInput from "./components/base/MyInput.vue";
 import SelectMethod from "./components/SelectMethod.vue";
-import FindTreasure from "./components/base/FindTreasure.vue";
-import Coffre from './components/Coffre.vue';
- 
+//import FindTreasure from "./components/base/FindTreasure.vue";
+//import Coffre from './components/Coffre.vue';
+import axios from 'axios'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*'
 
 export default {
   name: "app",
@@ -43,28 +55,43 @@ export default {
     MyInscription,
     MyInput,
     SelectMethod,
-    FindTreasure,
-    Coffre
+    //FindTreasure,
+    //Coffre
   },
   data () {
     return {
       //stages: ['FirstStage', 'SecondStage', 'ThirdStage'],
-      stages: ['', '8000', '7259'],
-      currentStageIndex: 0,
+      ports: ['', '8000', '7259'],
+      currentPortIndex: 0,
       //currentView: 'MyInscription',
-      isDecryptViewVisible: false
+      isDecryptViewVisible: false,
+      url: '',
+      method: 'get',
+      data: {},
+      response: {},
+      token: ''
     }
   },
 
   computed: {
-    currentStage () {
-      return this.stages[this.currentStageIndex]
+    currentPort() {
+      return this.ports[this.currentPortIndex]
     }
   },
 
   methods: {
+    request () {
+      axios({
+        method: this.method,
+        url: '/api/' + this.url,
+        data: this.data
+      }).then(response => {
+        this.response = response.data
+        console.log(this.response)
+      })
+    },
     goUp () {
-      this.currentStageIndex++
+      this.currentPortIndex++
     },
 /*    changeCurrentView (view) {
       this.currentView = view
