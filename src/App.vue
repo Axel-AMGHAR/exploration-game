@@ -138,11 +138,13 @@ export default {
         console.log(response)
         this.response = response.data
         this.headers = response.headers
-        axios.get('/' + this.currentStage + '/reset', {
+        if(this.url === 'reset')
+          this.numberTreasures = response.data.retreived_tresors.length
+        /*axios.get('/' + this.currentStage + '/reset', {
           headers: {
             'x-auth-token': this.token,
           }
-        }).then(response => this.numberTreasures = response.data.retreived_tresors.length)
+        }).then(response => this.numberTreasures = response.data.retreived_tresors.length)*/
 
         if(this.url === 'coffre')
           this.isDecryptViewVisible = true
