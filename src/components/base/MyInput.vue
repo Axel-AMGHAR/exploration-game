@@ -15,7 +15,8 @@ export default {
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       type="text"
-      class="form-text inputText mt-2 w-1/3
+      class="form-text inputText w-1/3
+      mx-2
       block 
       rounded-md 
       border-gray-300 
@@ -23,10 +24,3 @@ export default {
       focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
   />
 </template>
-
-<style scoped>
-
-.inputText {
-    margin: 10px;
-}
-</style>

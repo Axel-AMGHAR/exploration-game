@@ -13,7 +13,7 @@
 export default {
   name: 'JsonText',
   props: {
-      jsonText: Object
+      jsonText: [Object, String]
   },
   computed: {
       finalJson() {
