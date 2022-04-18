@@ -33,6 +33,7 @@
     </div>
 
     <div>
+      <div>
     <label
         for="token"
         class="ml-2"
@@ -42,6 +43,18 @@
         v-model="token"
         id="token"
     ></my-input>
+      </div>
+      <div>
+      <label
+          for="data"
+          class="ml-2"
+      >Data :</label>
+      <my-input
+          placeholder="data"
+          v-model="data"
+          id="data"
+      ></my-input>
+      </div>
     </div>
 
     <div class="flex">
@@ -98,10 +111,10 @@ export default {
       isDecryptViewVisible: false,
       url: '',
       method: 'get',
-      data: {},
+      data: '',
       response: {},
       token: '',
-      headers: {}
+      headers: {},
     }
   },
 
@@ -113,6 +126,7 @@ export default {
 
   methods: {
     request () {
+      this.isDecryptViewVisible = false
       axios({
         method: this.method,
         url: '/' + this.currentStage + '/' + this.url,
@@ -130,10 +144,10 @@ export default {
           }
         }).then(response => this.numberTreasures = response.data.retreived_tresors.length)
 
-        console.log(this.url)
         if(this.url === 'coffre')
           this.isDecryptViewVisible = true
       }).catch(error => {
+        console.log(error)
         this.response = 'Il vous faut une clé pour rentrer.'
       })
     },
